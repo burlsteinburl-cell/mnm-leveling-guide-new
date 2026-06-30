@@ -1,510 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Monsters & Memories Leveling Guide Dashboard - Public</title>
-<style>
-
+<title>Leveling Guide Dashboard</title>
+<style id="dashboardStyle">
 :root{
-  --void:#060705;
-  --ink:#12100c;
-  --basalt:#1c1b17;
-  --basalt-2:#27241d;
-  --parchment:#b99d76;
-  --parchment-2:#e1caa1;
-  --gold:#d7a956;
-  --gold-2:#f1d183;
-  --ember:#b76532;
-  --blood:#6f2520;
-  --moss:#3e4a2c;
-  --teal:#28c7b7;
-  --teal-dim:#168176;
-  --muted:#9b8a6d;
-  --line:rgba(241,209,131,.28);
-  --shadow:rgba(0,0,0,.55);
-  --card:rgba(23,21,17,.84);
-  --card-2:rgba(12,13,10,.92);
-  --danger:#c35847;
-  --ok:#7fb66d;
+  --bg:#090a07;
+  --bg-2:#15150f;
+  --panel:#1d1a12;
+  --panel-2:#272016;
+  --ink:#f3dfb0;
+  --muted:#bda980;
+  --dim:#8d7a58;
+  --line:rgba(236,202,124,.22);
+  --gold:#e2b950;
+  --gold-2:#ffde87;
+  --teal:#78b9ae;
+  --red:#b65a44;
+  --green:#91b86b;
+  --shadow:0 22px 70px rgba(0,0,0,.45);
+  --radius:18px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
   min-height:100vh;
-  color:var(--parchment-2);
+  color:var(--ink);
   background:
-    radial-gradient(circle at 18% 12%, rgba(215,169,86,.14), transparent 28rem),
-    radial-gradient(circle at 82% 18%, rgba(40,199,183,.09), transparent 30rem),
-    linear-gradient(180deg, #080908 0%, #11100d 42%, #070806 100%);
-  font-family: "Trebuchet MS", system-ui, -apple-system, Segoe UI, sans-serif;
-  overflow-x:hidden;
+    radial-gradient(circle at 18% 0%, rgba(191,144,65,.22), transparent 34rem),
+    radial-gradient(circle at 80% 14%, rgba(72,102,87,.18), transparent 30rem),
+    linear-gradient(180deg, #050604 0%, #0b0b08 44%, #070806 100%);
+  font-family: Georgia, "Times New Roman", serif;
 }
-body::before{
+body:before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  opacity:.38;
+  opacity:.12;
   background-image:
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    radial-gradient(circle at 25% 30%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 80% 12%, rgba(0,0,0,.35), transparent 28rem);
-  background-size: 44px 44px, 44px 44px, 9px 9px, auto;
-  mix-blend-mode: overlay;
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:54px 54px;
+  mix-blend-mode:screen;
 }
 a{color:var(--gold-2)}
 button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.shell{
-  width:min(1500px, calc(100vw - 28px));
-  margin:0 auto;
-  padding:22px 0 60px;
-}
+.shell{max-width:1500px;margin:0 auto;padding:28px}
 .hero{
   position:relative;
-  overflow:hidden;
   border:1px solid var(--line);
+  border-radius:28px;
+  padding:30px;
+  background:
+    linear-gradient(135deg, rgba(44,34,21,.92), rgba(18,18,12,.94)),
+    radial-gradient(circle at 0% 0%, rgba(255,223,128,.14), transparent 26rem);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(226,185,80,.16);
   border-radius:22px;
-  padding:26px;
-  background:
-    linear-gradient(135deg, rgba(7,8,6,.98), rgba(32,29,21,.92)),
-    radial-gradient(circle at 20% 20%, rgba(215,169,86,.19), transparent 20rem);
-  box-shadow:0 30px 80px var(--shadow), inset 0 0 0 1px rgba(255,255,255,.04);
+  pointer-events:none;
 }
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:auto -5% -3px -5%;
-  height:26px;
-  background:
-    linear-gradient(90deg, transparent, rgba(215,169,86,.5), transparent),
-    linear-gradient(#000,#000);
-  opacity:.55;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  margin-bottom:18px;
-}
+.brand{display:flex;gap:18px;align-items:center;position:relative;z-index:1}
 .brand-mark{
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  border:1px solid rgba(241,209,131,.45);
-  display:grid;
-  place-items:center;
-  color:var(--gold-2);
-  font-family:Georgia, serif;
-  font-weight:700;
-  letter-spacing:-2px;
-  font-size:25px;
-  background:
-    radial-gradient(circle at 35% 25%, rgba(241,209,131,.28), transparent 42%),
-    linear-gradient(145deg, #19160f, #050604);
-  box-shadow:0 0 28px rgba(215,169,86,.18), inset 0 0 20px rgba(0,0,0,.65);
+  min-width:70px;height:70px;border-radius:18px;
+  display:grid;place-items:center;
+  color:#18110a;font-weight:900;letter-spacing:.08em;
+  background:linear-gradient(145deg, #ffe6a3, #bd8430 58%, #684616);
+  border:2px solid rgba(255,230,163,.65);
+  box-shadow:inset 0 0 20px rgba(255,255,255,.22), 0 12px 30px rgba(0,0,0,.32);
 }
-.eyebrow{
-  margin:0 0 4px;
-  color:var(--teal);
-  text-transform:uppercase;
-  letter-spacing:.22em;
-  font-size:.72rem;
-}
-h1,h2,h3{
-  font-family:Georgia, "Times New Roman", serif;
-  font-weight:600;
-  margin:0;
-}
-h1{
-  font-size:clamp(2rem, 5vw, 4.2rem);
-  line-height:.98;
-  color:#f3d99c;
-  text-shadow:0 2px 0 #000, 0 0 24px rgba(215,169,86,.24);
-}
-.hero-grid{
-  display:grid;
-  grid-template-columns:1fr minmax(300px, 460px);
-  gap:22px;
-  align-items:end;
-}
-.hero p{
-  max-width:820px;
-  color:#cbb793;
-  line-height:1.6;
-  margin:18px 0 0;
-}
+h1{font-size:clamp(2.1rem,4.5vw,5rem);line-height:.95;margin:0;text-shadow:0 3px 0 #000, 0 0 28px rgba(226,185,80,.15)}
+#headerIntro{max-width:900px;color:#d4c096;font-size:1.05rem;line-height:1.58;margin:18px 0 0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.75fr);gap:24px;margin-top:22px;position:relative;z-index:1}
 .source-box{
-  border:1px solid rgba(241,209,131,.24);
-  border-radius:16px;
-  padding:16px;
-  background:
-    linear-gradient(180deg, rgba(185,157,118,.13), rgba(185,157,118,.05)),
-    rgba(0,0,0,.22);
-}
-.source-box strong{color:var(--gold-2)}
-.pill-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
-.pill{
-  display:inline-flex;
-  gap:6px;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(241,209,131,.25);
-  background:rgba(0,0,0,.25);
-  color:#dfc899;
-  font-size:.82rem;
-}
-.layout{
-  display:grid;
-  grid-template-columns: minmax(270px, 330px) 1fr;
-  gap:20px;
-  margin-top:20px;
-}
-.panel{
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:
-    linear-gradient(180deg, rgba(38,35,27,.86), rgba(12,13,10,.94)),
-    radial-gradient(circle at top right, rgba(215,169,86,.09), transparent 16rem);
-  box-shadow:0 24px 60px rgba(0,0,0,.38), inset 0 0 0 1px rgba(255,255,255,.03);
-}
-.sidebar{
-  position:sticky;
-  top:14px;
-  align-self:start;
-  padding:18px;
-}
-.panel-title{
-  color:var(--gold-2);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:14px;
-}
-.field{
-  display:grid;
-  gap:7px;
-  margin:0 0 13px;
-}
-label{
-  color:#cbb793;
-  font-size:.78rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-input, select, textarea{
-  width:100%;
-  color:#f5e8cb;
-  background:#0d0e0b;
-  border:1px solid rgba(241,209,131,.25);
-  border-radius:12px;
-  padding:11px 12px;
-  outline:none;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
-}
-input:focus, select:focus, textarea:focus{
-  border-color:rgba(40,199,183,.7);
-  box-shadow:0 0 0 3px rgba(40,199,183,.12), inset 0 1px 0 rgba(255,255,255,.04);
-}
-textarea{min-height:92px; resize:vertical}
-.checkline{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#d6c098;
-  margin:10px 0 16px;
-}
-.checkline input{width:auto}
-.btn{
-  border:1px solid rgba(241,209,131,.35);
-  border-radius:12px;
-  padding:10px 13px;
-  color:#f6dfad;
-  background:
-    linear-gradient(180deg, rgba(136,82,38,.9), rgba(79,42,24,.95));
-  box-shadow:0 10px 22px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.12);
-}
-.btn:hover{filter:brightness(1.1)}
-.btn:active{transform:translateY(1px)}
-.btn.secondary{
-  background:linear-gradient(180deg, rgba(61,64,47,.9), rgba(31,32,25,.95));
-}
-.btn.ghost{
-  background:rgba(0,0,0,.18);
-}
-.btn.danger{
-  background:linear-gradient(180deg, rgba(126,45,38,.95), rgba(73,24,22,.98));
-  border-color:rgba(255,160,140,.36);
-}
-.btn.teal{
-  background:linear-gradient(180deg, rgba(28,127,117,.94), rgba(18,79,74,.98));
-  border-color:rgba(40,199,183,.45);
-}
-.btn-row{display:flex; flex-wrap:wrap; gap:9px}
-.kpis{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(130px,1fr));
-  gap:14px;
-  margin-bottom:18px;
-}
-.kpi{
-  padding:16px;
+  border:1px solid rgba(226,185,80,.24);
   border-radius:18px;
-  background:
-    linear-gradient(180deg, rgba(185,157,118,.14), rgba(185,157,118,.05)),
-    rgba(0,0,0,.25);
-  border:1px solid rgba(241,209,131,.2);
-}
-.kpi .num{
-  font-family:Georgia, serif;
-  font-size:2rem;
-  color:var(--gold-2);
-  line-height:1;
-}
-.kpi .label{
-  color:#bdaa86;
-  margin-top:6px;
-  font-size:.82rem;
-}
-.main{
   padding:18px;
-}
-.toolbar{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:center;
-  margin:4px 0 16px;
-}
-.view-toggle{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.results-note{
-  color:#bdaa86;
-  font-size:.92rem;
-}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(310px, 1fr));
-  gap:14px;
-  margin-bottom:18px;
-}
-.card{
-  position:relative;
-  overflow:hidden;
-  border:1px solid rgba(241,209,131,.24);
-  border-radius:18px;
-  background:
-    linear-gradient(145deg, rgba(22,23,19,.94), rgba(9,10,8,.98)),
-    radial-gradient(circle at top right, rgba(40,199,183,.11), transparent 12rem);
-  box-shadow:0 18px 40px rgba(0,0,0,.33);
-}
-.card::before{
-  content:"";
-  position:absolute;
-  top:0; left:0; right:0;
-  height:3px;
-  background:linear-gradient(90deg, var(--gold), var(--teal), transparent);
-  opacity:.9;
-}
-.card-body{padding:16px}
-.card-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:flex-start;
-}
-.zone-name{
-  font-family:Georgia, serif;
-  font-size:1.25rem;
-  color:#f1d183;
-}
-.area-name{margin-top:5px; color:#dcc7a0}
-.meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:12px 0;
-}
-.badge{
-  border-radius:999px;
-  padding:4px 8px;
-  font-size:.75rem;
-  border:1px solid rgba(241,209,131,.25);
-  background:rgba(0,0,0,.28);
-  color:#dfc899;
-}
-.badge.solo{border-color:rgba(127,182,109,.45); color:#bde6ae}
-.badge.group{border-color:rgba(40,199,183,.4); color:#8fe9de}
-.badge.warn{border-color:rgba(198,121,70,.55); color:#f1c38f}
-.badge.needs{border-color:rgba(195,88,71,.55); color:#f2a297}
-.monsters{
-  color:#f2e3c2;
-  margin:9px 0;
-  line-height:1.45;
-}
-.notes{
-  color:#bfae8b;
+  background:linear-gradient(180deg, rgba(20,19,13,.82), rgba(7,8,6,.74));
+  color:#cbb98d;
   line-height:1.5;
-  margin:0;
 }
-.actionbar{
-  display:flex;
-  gap:8px;
-  justify-content:flex-end;
-  padding:12px 16px 16px;
-  border-top:1px solid rgba(241,209,131,.12);
+.source-box strong{color:var(--gold-2);font-size:1.05rem}
+.source-meta{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;color:var(--muted);font-size:.92rem}
+.source-meta span:not(:last-child):after,.source-meta a:not(:last-child):after{content:"·";margin-left:14px;color:var(--dim)}
+.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:22px;margin-top:22px;align-items:start}
+.panel{
+  background:linear-gradient(180deg, rgba(31,28,20,.96), rgba(17,17,12,.96));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
 }
-.table-wrap{
-  overflow:auto;
-  border:1px solid rgba(241,209,131,.18);
-  border-radius:18px;
-  background:rgba(0,0,0,.28);
-}
-table{
+.sidebar{padding:18px;position:sticky;top:18px}
+.main{padding:20px;min-width:0}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+h2{margin:0;color:var(--gold-2);font-size:1.28rem;letter-spacing:.03em}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}
+.field.wide{grid-column:1/-1}
+label{font-size:.83rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+input,select,textarea{
   width:100%;
-  min-width:1120px;
-  border-collapse:separate;
-  border-spacing:0;
+  border:1px solid rgba(236,202,124,.22);
+  border-radius:12px;
+  background:rgba(4,5,3,.78);
+  color:var(--ink);
+  padding:10px 11px;
+  outline:none;
 }
-thead th{
-  position:sticky;
-  top:0;
-  z-index:1;
-  text-align:left;
-  font-size:.75rem;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  color:#ffe0a1;
-  background:#1b1913;
-  border-bottom:1px solid rgba(241,209,131,.28);
-  padding:12px 10px;
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:rgba(255,222,135,.62);box-shadow:0 0 0 3px rgba(226,185,80,.13)}
+.checkline{display:flex;align-items:flex-start;gap:8px;text-transform:none;letter-spacing:0;color:#cbb98d;line-height:1.3;margin:10px 0 16px}
+.checkline input{width:auto;margin-top:2px}
+.btn-row{display:flex;flex-wrap:wrap;gap:9px}
+.btn{
+  border:1px solid rgba(226,185,80,.34);
+  color:var(--ink);
+  background:linear-gradient(180deg, rgba(106,76,28,.96), rgba(57,38,15,.96));
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+  transition:transform .12s ease, filter .12s ease, border-color .12s ease;
+  text-decoration:none;
+  user-select:none;
 }
-tbody td{
-  vertical-align:top;
-  padding:12px 10px;
-  border-bottom:1px solid rgba(241,209,131,.09);
-  color:#ddc7a2;
-  line-height:1.35;
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08);border-color:rgba(255,222,135,.6)}
+.btn.secondary{background:linear-gradient(180deg, rgba(48,70,63,.94), rgba(27,43,39,.94));border-color:rgba(120,185,174,.42)}
+.btn.teal{background:linear-gradient(180deg, rgba(91,145,135,.98), rgba(41,82,75,.98));border-color:rgba(151,226,212,.52)}
+.btn.ghost{background:rgba(0,0,0,.16)}
+.btn.danger{background:linear-gradient(180deg, rgba(137,66,47,.96), rgba(77,34,25,.96));border-color:rgba(221,114,83,.42)}
+.btn.small{padding:6px 9px;border-radius:10px;font-size:.88rem}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(226,185,80,.28);
+  border-radius:999px;
+  padding:4px 9px;
+  color:#ead39c;
+  background:rgba(0,0,0,.22);
+  font-size:.8rem;
+  line-height:1.2;
 }
-tbody tr:hover td{background:rgba(215,169,86,.06)}
-td.actions{white-space:nowrap}
-.empty{
-  text-align:center;
-  padding:34px;
-  color:#cbb793;
-}
-.hidden{display:none!important}
-dialog{
-  width:min(760px, calc(100vw - 28px));
-  border:1px solid rgba(241,209,131,.3);
-  border-radius:20px;
-  background:#11110d;
-  color:#f1d6a2;
-  padding:0;
-  box-shadow:0 30px 100px rgba(0,0,0,.75);
-}
-dialog::backdrop{background:rgba(0,0,0,.72)}
-.modal-head{
-  padding:18px 20px;
-  border-bottom:1px solid rgba(241,209,131,.18);
-  background:linear-gradient(180deg, rgba(70,52,30,.5), rgba(0,0,0,.16));
-}
-.modal-body{padding:20px}
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:12px;
-}
-.form-grid .wide{grid-column:1 / -1}
-.modal-foot{
-  padding:16px 20px;
-  border-top:1px solid rgba(241,209,131,.18);
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.toast{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:30;
-  background:#161711;
-  color:#f5ddad;
-  border:1px solid rgba(241,209,131,.35);
-  border-radius:14px;
-  padding:12px 14px;
-  box-shadow:0 16px 40px rgba(0,0,0,.45);
-  opacity:0;
-  transform:translateY(10px);
-  transition:.25s;
-}
-.toast.show{opacity:1; transform:translateY(0)}
-.footer{
-  margin-top:18px;
-  color:#9e8b6c;
-  text-align:center;
-  font-size:.9rem;
-}
-@media (max-width:980px){
-  .hero-grid,.layout{grid-template-columns:1fr}
-  .sidebar{position:relative; top:auto}
-  .kpis{grid-template-columns:repeat(2, 1fr)}
-}
-@media (max-width:620px){
-  .shell{width:min(100vw - 16px,1500px); padding-top:8px}
-  .hero{padding:18px; border-radius:16px}
-  .brand{align-items:flex-start}
-  .brand-mark{width:48px;height:48px;font-size:21px}
-  .kpis{grid-template-columns:1fr}
-  .toolbar{align-items:stretch; flex-direction:column}
-  .form-grid{grid-template-columns:1fr}
-}
-
-/* Public/read-only overrides */
-#saveState { background:rgba(74,150,142,.14); color:var(--teal-2); }
-.public-note { margin-top: 12px; color: var(--muted); line-height: 1.5; }
-.table-wrap table th:last-child, .table-wrap table td:last-child { width: auto; }
+.badge.warn{border-color:rgba(255,185,83,.5);color:#ffd794;background:rgba(139,83,20,.2)}
+.badge.needs{border-color:rgba(221,114,83,.48);color:#ffc1ad;background:rgba(137,66,47,.2)}
+.badge.group{border-color:rgba(120,185,174,.48);color:#b9fff4;background:rgba(48,70,63,.28)}
+.badge.solo{border-color:rgba(145,184,107,.48);color:#dcffb6;background:rgba(62,84,39,.24)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.kpi{border:1px solid rgba(226,185,80,.18);border-radius:16px;background:rgba(0,0,0,.18);padding:15px}
+.kpi .num{font-size:2rem;color:var(--gold-2);font-weight:800;line-height:1}
+.kpi .label{color:var(--muted);font-size:.82rem;margin-top:6px;text-transform:uppercase;letter-spacing:.08em}
+.toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px}
+.results-note{color:#bba77e;margin-top:5px;line-height:1.35}
+.view-toggle{display:flex;gap:8px;flex-shrink:0}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:16px}
+.card{border:1px solid rgba(226,185,80,.18);border-radius:18px;background:linear-gradient(180deg, rgba(39,32,22,.98), rgba(16,16,11,.96));overflow:hidden;display:flex;flex-direction:column;min-height:100%}
+.card-body{padding:16px;display:flex;flex-direction:column;gap:11px;flex:1}.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.zone-name{font-size:1.13rem;color:var(--gold-2);font-weight:800}.area-name{color:#d1bd8f;line-height:1.38;margin-top:4px}.meta{display:flex;flex-wrap:wrap;gap:6px}.detail{line-height:1.42;color:#d8c599}.detail strong{color:#f0d694}.notes{margin:0;color:#c9b68b;line-height:1.45}.entry-image-wrap{border:1px solid rgba(226,185,80,.2);border-radius:14px;overflow:hidden;background:#040503}.entry-image{display:block;width:100%;max-height:260px;object-fit:cover}.actionbar{display:flex;gap:8px;justify-content:flex-end;border-top:1px solid rgba(226,185,80,.13);padding:12px;background:rgba(0,0,0,.14)}
+.table-wrap{overflow:auto;border:1px solid rgba(226,185,80,.15);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:1220px}th,td{padding:10px 9px;text-align:left;border-bottom:1px solid rgba(226,185,80,.12);vertical-align:top;line-height:1.35}th{position:sticky;top:0;background:#17150f;color:var(--gold-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;z-index:1}td{color:#d6c193;font-size:.92rem}.entry-thumb{width:86px;max-height:64px;object-fit:cover;border-radius:9px;border:1px solid rgba(226,185,80,.22);background:#050604}.actions{white-space:nowrap}.empty{padding:24px;color:var(--muted);text-align:center}.footer{color:#8e805f;line-height:1.5;margin:18px 6px 0;font-size:.9rem}.hidden{display:none!important}.public-note,.helper{color:#bdaa86;line-height:1.45;font-size:.86rem;margin:12px 0 0}.header-admin{border:1px solid rgba(226,185,80,.18);background:rgba(0,0,0,.13);border-radius:14px;padding:12px;margin-bottom:14px}.header-admin p{margin:8px 0 0;color:#bda980;font-size:.86rem;line-height:1.35}
+dialog{width:min(920px,calc(100vw - 28px));max-height:88vh;border:1px solid rgba(226,185,80,.34);border-radius:22px;background:linear-gradient(180deg,#282115,#12120d);color:var(--ink);box-shadow:0 30px 90px rgba(0,0,0,.65);padding:0}dialog::backdrop{background:rgba(0,0,0,.72)}.modal-head,.modal-foot{padding:16px 18px;border-bottom:1px solid rgba(226,185,80,.14)}.modal-foot{border-top:1px solid rgba(226,185,80,.14);border-bottom:0;display:flex;justify-content:space-between;gap:12px}.modal-body{padding:18px;max-height:64vh;overflow:auto}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.image-preview{border:1px dashed rgba(226,185,80,.28);border-radius:14px;padding:12px;background:rgba(0,0,0,.18);color:#bdaa86}.image-preview img{display:block;max-width:100%;max-height:240px;object-fit:contain;border-radius:12px;border:1px solid rgba(241,209,131,.22);background:#050604}.image-preview .image-name{color:#dfc899;font-size:.86rem;word-break:break-word;margin-top:6px}.toast{position:fixed;right:22px;bottom:22px;z-index:99;background:#201a11;color:var(--gold-2);border:1px solid rgba(226,185,80,.45);box-shadow:var(--shadow);border-radius:14px;padding:12px 14px;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .16s ease,transform .16s ease}.toast.show{opacity:1;transform:translateY(0)}
+body.public .editable-only{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{position:static}.hero-grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.shell{padding:14px}.hero{padding:20px}.brand{align-items:flex-start}.brand-mark{min-width:56px;height:56px;border-radius:14px}.toolbar{flex-direction:column}.view-toggle{width:100%}.view-toggle .btn{flex:1}.cards{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.modal-foot{flex-direction:column}.kpis{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<body class="public">
+
   <div class="shell">
     <header class="hero">
       <div class="brand">
-        <div class="brand-mark">M&amp;M</div>
+        <div class="brand-mark" id="headerBrandMark">M&amp;M</div>
         <div>
-          <p class="eyebrow">Aêthoril Field Notes</p>
-          <h1>Leveling Guide Dashboard</h1>
+          <h1 id="headerTitle">Leveling Guide Dashboard</h1>
+          <p id="headerIntro">Leveling spots compiled from the Monsters &amp; Memories Wiki and community sourced. Filter by level, solo/group suitability, zone, and status.</p>
         </div>
       </div>
       <div class="hero-grid">
-        <div>
-          <p>
-            Public read-only hunting spots compiled from the Monsters &amp; Memories Wiki per-level guide.
-            Filter by level, solo/group suitability, zone, and status without changing the shared data.
-          </p>
-          <div class="pill-row">
-            <span class="pill">🧭 Level + zone filters</span>
-            <span class="pill">🃏 Card / table views</span>
-            <span class="pill">🔒 Read-only public copy</span>
-          </div>
-        </div>
+        <div></div>
         <div class="source-box">
-          <strong>Source caution</strong><br>
-          The wiki guide notes that many spots were written during playtests and may not match Early Access.
-          Treat uncertain rows as field notes that should be verified in game.
-          <div class="pill-row">
-            <span class="pill">Imported 2026-06-29</span>
-            <span class="pill"><a href="https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide" target="_blank" rel="noopener">Wiki source</a></span>
-            <span class="pill"><a href="https://monstersandmemories.com/" target="_blank" rel="noopener">Official site</a></span>
+          <strong id="headerSourceTitle">Source caution</strong><br>
+          <span id="headerSourceText">This leveling guide contains leveling spots that were found during playtests and may not match Early Access. Please reach out if information is outdated.</span>
+          <div class="source-meta">
+            <span id="headerSourceDate">Updated 6/29/2026</span>
+            <a id="headerWikiLink" target="_blank" rel="noopener" href="https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide">Wiki source</a>
+            <a id="headerOfficialLink" target="_blank" rel="noopener" href="https://monstersandmemories.com/">Official site</a>
           </div>
         </div>
       </div>
@@ -514,927 +195,101 @@ dialog::backdrop{background:rgba(0,0,0,.72)}
       <aside class="panel sidebar">
         <div class="panel-title">
           <h2>Filters</h2>
-          <span class="badge" id="saveState">Read-only</span>
+          <span class="badge" id="saveState">Public</span>
         </div>
+
+        
 
         <div class="field">
-          <label for="search">Search camps, mobs, notes</label>
-          <input id="search" type="search" placeholder="e.g., goblin, undead, named">
+          <label for="search">Search camps, mobs, named spawns, loot, notes</label>
+          <input id="search" type="search" placeholder="e.g., goblin, undead, named, tunic">
         </div>
-
-        <div class="field">
-          <label for="targetLevel">Target level</label>
-          <input id="targetLevel" type="number" min="1" max="60" placeholder="Any">
-        </div>
-
-        <div class="field">
-          <label for="mode">Mode</label>
-          <select id="mode">
-            <option value="either">Solo or group</option>
-            <option value="solo">Solo range only</option>
-            <option value="group">Group range only</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="zoneFilter">Zone</label>
-          <select id="zoneFilter"></select>
-        </div>
-
-        <div class="field">
-          <label for="bandFilter">Level band</label>
-          <select id="bandFilter"></select>
-        </div>
-
-        <div class="field">
-          <label for="statusFilter">Status</label>
-          <select id="statusFilter">
-            <option value="all">All statuses</option>
-            <option>Source row</option>
-            <option>Needs verification</option>
-            <option>Needs info</option>
-            <option>Needs data</option>
-            <option>Player added</option>
-          </select>
-        </div>
-
-        <label class="checkline">
-          <input id="showNeedsData" type="checkbox" checked>
-          Show placeholder / needs-data rows
-        </label>
-
+        <div class="field"><label for="targetLevel">Target level</label><input id="targetLevel" type="number" min="1" max="60" placeholder="Any"></div>
+        <div class="field"><label for="mode">Mode</label><select id="mode"><option value="either">Solo or group</option><option value="solo">Solo range only</option><option value="group">Group range only</option></select></div>
+        <div class="field"><label for="zoneFilter">Zone</label><select id="zoneFilter"><option value="all">All zones</option><option>Evershade Weald</option><option>Fallen Pass</option><option>Glass Flats</option><option>Keepers Bight</option><option>Night Harbor</option><option>Night Harbor, Evershade Weald</option><option>Shaded Dunes</option><option>Sungreet Strand</option><option>Tomb of the Last Wyrmsbane</option><option>Vale of Zintar</option></select></div>
+        <div class="field"><label for="bandFilter">Level band</label><select id="bandFilter"><option value="all">All bands</option><option>1-5</option><option>6-10</option><option>11-15</option><option>16-20</option><option>21-25</option><option>26-30</option><option>31-35</option><option>36-40</option><option>41-45</option><option>46-50</option><option>51-55</option><option>56-60</option></select></div>
+        <div class="field"><label for="statusFilter">Status</label><select id="statusFilter"><option value="all">All statuses</option><option>Source row</option><option>Needs verification</option><option>Needs info</option><option>Needs data</option><option>Player added</option></select></div>
+        <label class="checkline"><input id="showNeedsData" type="checkbox" checked=""> Show placeholder / needs-data rows</label>
         <div class="btn-row">
-          <button class="btn secondary" id="clearFilters">Clear filters</button>
+          
+          <button class="btn secondary" id="clearFilters" type="button">Clear filters</button>
         </div>
-
-        <p class="public-note">This public version has no add, edit, delete, import, export, reset, or browser-save controls.</p>
+        
+        
+        
+        <p class="public-note public-only">This public version has no add, edit, delete, import, export, reset, or browser-save controls.</p>
       </aside>
 
       <main class="panel main">
         <section class="kpis">
-          <div class="kpi"><div class="num" id="kpiShown">0</div><div class="label">Rows shown</div></div>
-          <div class="kpi"><div class="num" id="kpiTotal">0</div><div class="label">Guide rows</div></div>
-          <div class="kpi"><div class="num" id="kpiZones">0</div><div class="label">Zones represented</div></div>
-          <div class="kpi"><div class="num" id="kpiNeeds">0</div><div class="label">Needs info / data</div></div>
+          <div class="kpi"><div class="num" id="kpiShown">1</div><div class="label">Rows shown</div></div>
+          <div class="kpi"><div class="num" id="kpiTotal">34</div><div class="label" id="savedLabel">Rows saved</div></div>
+          <div class="kpi"><div class="num" id="kpiZones">10</div><div class="label">Zones represented</div></div>
+          <div class="kpi"><div class="num" id="kpiNeeds">12</div><div class="label">Needs info / data</div></div>
         </section>
-
         <div class="toolbar">
-          <div>
-            <h2>Hunting Spots</h2>
-            <div class="results-note" id="resultsNote">Showing all guide rows.</div>
-          </div>
-          <div class="view-toggle">
-            <button class="btn secondary" id="cardViewBtn">Card view</button>
-            <button class="btn ghost" id="tableViewBtn">Table view</button>
-          </div>
+          <div><h2>Hunting Spots</h2><div class="results-note" id="resultsNote">Showing 1 guide row.</div></div>
+          <div class="view-toggle"><button class="btn secondary" id="cardViewBtn" type="button">Card view</button><button class="btn ghost" id="tableViewBtn" type="button">Table view</button></div>
         </div>
-
         <section class="cards" id="cards"></section>
-
         <section class="table-wrap hidden" id="tableWrap">
           <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Band</th>
-                <th>Solo</th>
-                <th>Group</th>
-                <th>Zone</th>
-                <th>Area</th>
-                <th>Monsters</th>
-                <th>Notes</th>
-                <th>Status</th>
-                <th>Tags</th>
-              </tr>
-            </thead>
+            <thead><tr><th>ID</th><th>Image</th><th>Band</th><th>Solo</th><th>Group</th><th>Zone</th><th>Area</th><th>Monsters</th><th>Named Spawns</th><th>Loot Dropped</th><th>Notes</th><th>Status</th><th>Tags</th></tr></thead>
             <tbody id="tableBody"></tbody>
           </table>
         </section>
       </main>
     </div>
-
-    <footer class="footer">
-      Data source: Monsters &amp; Memories Wiki Per-Level Hunting Guide. Visual treatment is an unofficial fan-style dashboard inspired by the official Monsters &amp; Memories website.
-    </footer>
+    <footer class="footer">Data source: Monsters &amp; Memories Wiki Per-Level Hunting Guide. Visual treatment is an unofficial fan-style dashboard inspired by the official Monsters &amp; Memories website.</footer>
   </div>
 
-<script>
-const SOURCE_ROWS = [
-  {
-    "id": "MNM-001",
-    "levelBand": "1-5",
-    "soloRange": "1-5",
-    "soloMin": 1,
-    "soloMax": 5,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Night Harbor, Evershade Weald",
-    "area": "Starting zones (North and West gates. Main Faelindral lift).",
-    "monsters": "Rats - Bats - Snakes - Spiders - Beetles - Skeletons - Ashira - Wasp - Black Widow - Drakeling - Drayd",
-    "notes": "-",
-    "status": "Source row",
-    "tags": "solo",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-002",
-    "levelBand": "1-5",
-    "soloRange": "1-3",
-    "soloMin": 1,
-    "soloMax": 3,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Night Harbor",
-    "area": "Shaded Bloom Inn basement",
-    "monsters": "Beetles - Rats",
-    "notes": "-",
-    "status": "Source row",
-    "tags": "solo",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-003",
-    "levelBand": "1-5",
-    "soloRange": "1-5",
-    "soloMin": 1,
-    "soloMax": 5,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Night Harbor",
-    "area": "Saltbreeze Park",
-    "monsters": "Bats",
-    "notes": "Bats spawn at night",
-    "status": "Source row",
-    "tags": "solo, night",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-004",
-    "levelBand": "1-5",
-    "soloRange": "1-5",
-    "soloMin": 1,
-    "soloMax": 5,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Night Harbor",
-    "area": "Necropolis Front yard",
-    "monsters": "Rats - Bats - Spiders - Beetles - Skeletons - Shadow Knight Trainees",
-    "notes": "Night Terror (Lvl 8) spawns at Night",
-    "status": "Source row",
-    "tags": "solo, night",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-005",
-    "levelBand": "1-5",
-    "soloRange": "1-5",
-    "soloMin": 1,
-    "soloMax": 5,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Night Harbor",
-    "area": "The Garrison Boatyard",
-    "monsters": "Rats",
-    "notes": "-",
-    "status": "Source row",
-    "tags": "solo",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-006",
-    "levelBand": "1-5",
-    "soloRange": "4-6",
-    "soloMin": 4,
-    "soloMax": 6,
-    "groupRange": "3-6",
-    "groupMin": 3,
-    "groupMax": 6,
-    "zone": "Night Harbor",
-    "area": "West gate by the shoreline, continues into shaded dunes. North gate also has spawns tucked away on the far right relative to gate. North gate crocs has a chance to spawn a name (Snar the egg collector) typically the area is either dead or camped.",
-    "monsters": "Crocodile Hatchlings",
-    "notes": "Non-hostile",
-    "status": "Source row",
-    "tags": "solo, group, named",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-007",
-    "levelBand": "1-5",
-    "soloRange": "3+",
-    "soloMin": 3,
-    "soloMax": 60,
-    "groupRange": "2-6",
-    "groupMin": 2,
-    "groupMax": 6,
-    "zone": "Evershade Weald",
-    "area": "Wasp Ruins",
-    "monsters": "a wasp worker",
-    "notes": "Neutral but will social aggro. Located on the west following the main walkways through Evershade Weald.",
-    "status": "Source row",
-    "tags": "solo, group",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-008",
-    "levelBand": "1-5",
-    "soloRange": "3+",
-    "soloMin": 3,
-    "soloMax": 60,
-    "groupRange": "2-6",
-    "groupMin": 2,
-    "groupMax": 6,
-    "zone": "Evershade Weald",
-    "area": "Scout Camp",
-    "monsters": "a fellstone orc scout",
-    "notes": "Near a fork in the main paths, if you see spiders you're going the right way. Camp of 3 orcs + roamer + spawn inside a tree. Drops unstackable repeatable turnin item \"Unintelligible notes\". Named spawn.",
-    "status": "Source row",
-    "tags": "solo, group, named, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-009",
-    "levelBand": "1-5",
-    "soloRange": "Unknown",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "Unknown",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Evershade Weald",
-    "area": "Beguiled Wolves Den - Southwest of fairy circle past a bridge and ruins",
-    "monsters": "a beguiled wolf",
-    "notes": "Low information on camp. Submitter not high enough level to attempt camp. Extra clarifications needed.",
-    "status": "Needs info",
-    "tags": "needs info",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-010",
-    "levelBand": "1-5",
-    "soloRange": "Unknown",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "Unknown",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Evershade Weald",
-    "area": "Faerie Dragon Caves - Northwest of fairy circle up some hills",
-    "monsters": "a beguiled wolf, a fae guardian, a fae spellweaver, a fae wanderer",
-    "notes": "Low information on camp. Submitter not high enough level to attempt camp. Extra clarifications needed.",
-    "status": "Needs info",
-    "tags": "needs info",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-011",
-    "levelBand": "6-10",
-    "soloRange": "8",
-    "soloMin": 8,
-    "soloMax": 8,
-    "groupRange": "4-20",
-    "groupMin": 4,
-    "groupMax": 20,
-    "zone": "Tomb of the Last Wyrmsbane",
-    "area": "Entrance",
-    "monsters": "Undead",
-    "notes": "Can grind for a while here at increasingly difficult camps. Good gear drops.",
-    "status": "Source row",
-    "tags": "solo, group, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-012",
-    "levelBand": "6-10",
-    "soloRange": "6-10",
-    "soloMin": 6,
-    "soloMax": 10,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "Shaded Dunes",
-    "area": "Near zoneline into Tel'Ekir",
-    "monsters": "Ashira",
-    "notes": "Contains multiple camps of Ashira with a convenient zoneline to evac to if pulls get wacky.",
-    "status": "Source row",
-    "tags": "solo",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-013",
-    "levelBand": "11-15",
-    "soloRange": "13-15",
-    "soloMin": 13,
-    "soloMax": 15,
-    "groupRange": "8-12",
-    "groupMin": 8,
-    "groupMax": 12,
-    "zone": "Night Harbor",
-    "area": "West of the twilight harbor in NH (by the cranes)",
-    "monsters": "Goblins",
-    "notes": "No faction hit. Social.",
-    "status": "Source row",
-    "tags": "solo, group",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-014",
-    "levelBand": "11-15",
-    "soloRange": "12?",
-    "soloMin": 12,
-    "soloMax": 12,
-    "groupRange": "8-12",
-    "groupMin": 8,
-    "groupMax": 12,
-    "zone": "Sungreet Strand",
-    "area": "By the beach, past the Ashira camps",
-    "monsters": "Thugs, Acolytes",
-    "notes": "It's best to have a tank and a healer, damage is high.",
-    "status": "Needs verification",
-    "tags": "solo, group, group advised, needs verification",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-015",
-    "levelBand": "11-15",
-    "soloRange": "12?",
-    "soloMin": 12,
-    "soloMax": 12,
-    "groupRange": "10-14?",
-    "groupMin": 10,
-    "groupMax": 14,
-    "zone": "Night Harbor",
-    "area": "Graveyard in town, above the necro area",
-    "monsters": "Undead",
-    "notes": "Need a key to get in (There's a quest). They come out at night.",
-    "status": "Needs verification",
-    "tags": "solo, group, night, loot/quest, access, needs verification",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-016",
-    "levelBand": "11-15",
-    "soloRange": "17+",
-    "soloMin": 17,
-    "soloMax": 60,
-    "groupRange": "10-15",
-    "groupMin": 10,
-    "groupMax": 15,
-    "zone": "Sungreet Strand",
-    "area": "Tel Ekir",
-    "monsters": "Bloodynose goblin",
-    "notes": "Tank and healer needed.",
-    "status": "Source row",
-    "tags": "solo, group, group advised",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-017",
-    "levelBand": "11-15",
-    "soloRange": "21?",
-    "soloMin": 21,
-    "soloMax": 21,
-    "groupRange": "13-18",
-    "groupMin": 13,
-    "groupMax": 18,
-    "zone": "Shaded Dunes",
-    "area": "Ancient Crypt",
-    "monsters": "Skeletons",
-    "notes": "Tank and healer needed.",
-    "status": "Needs verification",
-    "tags": "solo, group, group advised, needs verification",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-018",
-    "levelBand": "16-20",
-    "soloRange": "17-20",
-    "soloMin": 17,
-    "soloMax": 20,
-    "groupRange": "15",
-    "groupMin": 15,
-    "groupMax": 15,
-    "zone": "Fallen Pass",
-    "area": "Pit just inside zone (don't go up the ramp)",
-    "monsters": "Dusty Skeletons",
-    "notes": "They seem to range from 16-19. Easy single pulls, anywhere along the wall is generally safe.",
-    "status": "Source row",
-    "tags": "solo, group",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-019",
-    "levelBand": "16-20",
-    "soloRange": "18",
-    "soloMin": 18,
-    "soloMax": 18,
-    "groupRange": "16-20",
-    "groupMin": 16,
-    "groupMax": 20,
-    "zone": "Glass Flats",
-    "area": "Goblin camp (Turn left once you zone into GF from SS)",
-    "monsters": "Goblins",
-    "notes": "-",
-    "status": "Source row",
-    "tags": "solo, group",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-020",
-    "levelBand": "16-20",
-    "soloRange": "24",
-    "soloMin": 24,
-    "soloMax": 24,
-    "groupRange": "16-20",
-    "groupMin": 16,
-    "groupMax": 20,
-    "zone": "Sungreet Strand",
-    "area": "Quarry",
-    "monsters": "Cinder Worker",
-    "notes": "Loot is used in the Cinder Beetle Armor Quests.",
-    "status": "Source row",
-    "tags": "solo, group, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-021",
-    "levelBand": "16-20",
-    "soloRange": "21+",
-    "soloMin": 21,
-    "soloMax": 60,
-    "groupRange": "18-23",
-    "groupMin": 18,
-    "groupMax": 23,
-    "zone": "Sungreet Strand",
-    "area": "Ashira camp by Glass Flats zoneline (near the water)",
-    "monsters": "Ashira",
-    "notes": "Can someone double check the level ranges? Were red at 17 but was in a group killing them.",
-    "status": "Needs verification",
-    "tags": "solo, group, group advised, needs verification",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-022",
-    "levelBand": "21-25",
-    "soloRange": "27",
-    "soloMin": 27,
-    "soloMax": 27,
-    "groupRange": "20-25",
-    "groupMin": 20,
-    "groupMax": 25,
-    "zone": "Fallen Pass",
-    "area": "Pit",
-    "monsters": "Bone Carver Beetles",
-    "notes": "Necrofarius is a good beetle named looting some items.",
-    "status": "Source row",
-    "tags": "solo, group, named, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-023",
-    "levelBand": "21-25",
-    "soloRange": "28",
-    "soloMin": 28,
-    "soloMax": 28,
-    "groupRange": "20-25",
-    "groupMin": 20,
-    "groupMax": 25,
-    "zone": "Fallen Pass",
-    "area": "Up the ramp to the left",
-    "monsters": "Skeletons and Ghouls",
-    "notes": "The ghoul adepts nuke for 200 (blaze) so interrupt it. Great xp, tons of pulls.",
-    "status": "Source row",
-    "tags": "solo, group",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-024",
-    "levelBand": "21-25",
-    "soloRange": "28",
-    "soloMin": 28,
-    "soloMax": 28,
-    "groupRange": "20-24",
-    "groupMin": 20,
-    "groupMax": 24,
-    "zone": "Glass Flats",
-    "area": "Beach, going straight ahead after entering",
-    "monsters": "Szuurian viper, beetles",
-    "notes": "Single pull 20-25 (watchout for roaming named 30+) great xp.",
-    "status": "Source row",
-    "tags": "solo, group, named",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-025",
-    "levelBand": "21-25",
-    "soloRange": "30",
-    "soloMin": 30,
-    "soloMax": 30,
-    "groupRange": "20-25",
-    "groupMin": 20,
-    "groupMax": 25,
-    "zone": "Fallen Pass",
-    "area": "Necro cave, bank of the canyon",
-    "monsters": "Undead rats, fallen adventurers",
-    "notes": "Best exp/kill of FP but less xp/hour, not many mobs.",
-    "status": "Source row",
-    "tags": "solo, group",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-026",
-    "levelBand": "26-30",
-    "soloRange": "32",
-    "soloMin": 32,
-    "soloMax": 32,
-    "groupRange": "22-28",
-    "groupMin": 22,
-    "groupMax": 28,
-    "zone": "Vale of Zintar",
-    "area": "Hug right wall, you'll see tents near a lake, beneath the corrupted floating castle",
-    "monsters": "Corrupted Ashira Hunter",
-    "notes": "Great drops sellable between 30s and 1g at NPCs/OOC.",
-    "status": "Source row",
-    "tags": "solo, group, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-027",
-    "levelBand": "26-30",
-    "soloRange": "26-32",
-    "soloMin": 26,
-    "soloMax": 32,
-    "groupRange": "22-28",
-    "groupMin": 22,
-    "groupMax": 28,
-    "zone": "Sungreet Strand",
-    "area": "Cellar (third agricole building) and pirates (fourth)",
-    "monsters": "Pirate, hired tracker",
-    "notes": "Cellar is a secret zone; double click on a wall and it will open.",
-    "status": "Source row",
-    "tags": "solo, group, access",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-028",
-    "levelBand": "26-30",
-    "soloRange": "35+",
-    "soloMin": 35,
-    "soloMax": 60,
-    "groupRange": "26-30",
-    "groupMin": 26,
-    "groupMax": 30,
-    "zone": "Vale of Zintar",
-    "area": "Orc camp - FP entrance, north west.",
-    "monsters": "Dustrend Orcs",
-    "notes": "Loot doesn't compare with corrupted Ashiras but exp is better.",
-    "status": "Source row",
-    "tags": "solo, group, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-029",
-    "levelBand": "31-35",
-    "soloRange": "~32+",
-    "soloMin": 32,
-    "soloMax": 60,
-    "groupRange": "28-35",
-    "groupMin": 28,
-    "groupMax": 35,
-    "zone": "Keepers Bight",
-    "area": "Poachers camps",
-    "monsters": "poachers",
-    "notes": "Named poachers drop tunic, leggings, boots, and dagger which can be handed in to undead NPC in bear cave. Also quest skinning daggers drop here.",
-    "status": "Source row",
-    "tags": "solo, group, named, loot/quest",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-030",
-    "levelBand": "36-40",
-    "soloRange": "-",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "",
-    "area": "",
-    "monsters": "",
-    "notes": "Needs data; source page contains only placeholder dashes for this level band.",
-    "status": "Needs data",
-    "tags": "needs data",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-031",
-    "levelBand": "41-45",
-    "soloRange": "-",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "",
-    "area": "",
-    "monsters": "",
-    "notes": "Needs data; source page contains only placeholder dashes for this level band.",
-    "status": "Needs data",
-    "tags": "needs data",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-032",
-    "levelBand": "46-50",
-    "soloRange": "-",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "",
-    "area": "",
-    "monsters": "",
-    "notes": "Needs data; source page contains only placeholder dashes for this level band.",
-    "status": "Needs data",
-    "tags": "needs data",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-033",
-    "levelBand": "51-55",
-    "soloRange": "-",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "-",
-    "groupMin": null,
-    "groupMax": null,
-    "zone": "",
-    "area": "",
-    "monsters": "",
-    "notes": "Needs data; source page contains only placeholder dashes for this level band.",
-    "status": "Needs data",
-    "tags": "needs data",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
-  },
-  {
-    "id": "MNM-034",
-    "levelBand": "56-60",
-    "soloRange": "Can't solo",
-    "soloMin": null,
-    "soloMax": null,
-    "groupRange": "55-60",
-    "groupMin": 55,
-    "groupMax": 60,
-    "zone": "Vale of Zintar",
-    "area": "Sand giants city ? (Need info on the name)",
-    "monsters": "Sand giants and other giants monsters",
-    "notes": "-",
-    "status": "Needs verification",
-    "tags": "group, needs verification",
-    "sourceUrl": "https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",
-    "sourceNote": "Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access."
+  
+
+  
+  <div class="toast" id="toast">Entry updated and saved.</div>
+
+
+
+
+<script>window.INITIAL_PACKAGE={"version":3,"exportedAt":"2026-06-30T01:28:53.848Z","header":{"brandMark":"M\u0026M","title":"Leveling Guide Dashboard","intro":"Leveling spots compiled from the Monsters \u0026 Memories Wiki and community sourced. Filter by level, solo/group suitability, zone, and status.","sourceTitle":"Source caution","sourceText":"This leveling guide contains leveling spots that were found during playtests and may not match Early Access. Please reach out if information is outdated.","sourceDate":"Updated 6/29/2026","wikiLabel":"Wiki source","wikiUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","officialLabel":"Official site","officialUrl":"https://monstersandmemories.com/"},"rows":[{"id":"MNM-001","levelBand":"1-5","soloRange":"1-5","soloMin":1,"soloMax":5,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"Night Harbor, Evershade Weald","area":"Starting zones (North and West gates. Main Faelindral lift).","monsters":"Rats - Bats - Snakes - Spiders - Beetles - Skeletons - Ashira - Wasp - Black Widow - Drakeling - Drayd","namedSpawns":"","lootDropped":"","notes":"-","status":"Source row","tags":"solo","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-002","levelBand":"1-5","soloRange":"1-3","soloMin":1,"soloMax":3,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"Night Harbor","area":"Shaded Bloom Inn basement","monsters":"Beetles - Rats","namedSpawns":"","lootDropped":"","notes":"-","status":"Source row","tags":"solo","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-003","levelBand":"1-5","soloRange":"1-5","soloMin":1,"soloMax":5,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"Night Harbor","area":"Saltbreeze Park","monsters":"Bats","namedSpawns":"","lootDropped":"","notes":"Bats spawn at night","status":"Source row","tags":"solo, night","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-004","levelBand":"1-5","soloRange":"1-5","soloMin":1,"soloMax":5,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"Night Harbor","area":"Necropolis Front yard","monsters":"Rats - Bats - Spiders - Beetles - Skeletons - Shadow Knight Trainees","namedSpawns":"","lootDropped":"","notes":"Night Terror (Lvl 8) spawns at Night","status":"Source row","tags":"solo, night","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-005","levelBand":"1-5","soloRange":"1-5","soloMin":1,"soloMax":5,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"Night Harbor","area":"The Garrison Boatyard","monsters":"Rats","namedSpawns":"","lootDropped":"","notes":"-","status":"Source row","tags":"solo","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-006","levelBand":"1-5","soloRange":"4-6","soloMin":4,"soloMax":6,"groupRange":"3-6","groupMin":3,"groupMax":6,"zone":"Night Harbor","area":"West gate by the shoreline, continues into shaded dunes. North gate also has spawns tucked away on the far right relative to gate. North gate crocs has a chance to spawn a name (Snar the egg collector) typically the area is either dead or camped.","monsters":"Crocodile Hatchlings","namedSpawns":"","lootDropped":"","notes":"Non-hostile","status":"Source row","tags":"solo, group, named","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-007","levelBand":"1-5","soloRange":"3+","soloMin":3,"soloMax":60,"groupRange":"2-6","groupMin":2,"groupMax":6,"zone":"Evershade Weald","area":"Wasp Ruins","monsters":"a wasp worker","namedSpawns":"","lootDropped":"","notes":"Neutral but will social aggro. Located on the west following the main walkways through Evershade Weald.","status":"Source row","tags":"solo, group","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-008","levelBand":"1-5","soloRange":"3+","soloMin":3,"soloMax":60,"groupRange":"2-6","groupMin":2,"groupMax":6,"zone":"Evershade Weald","area":"Scout Camp","monsters":"a fellstone orc scout","namedSpawns":"","lootDropped":"","notes":"Near a fork in the main paths, if you see spiders you're going the right way. Camp of 3 orcs + roamer + spawn inside a tree. Drops unstackable repeatable turnin item \"Unintelligible notes\". Named spawn.","status":"Source row","tags":"solo, group, named, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-009","levelBand":"1-5","soloRange":"Unknown","soloMin":null,"soloMax":null,"groupRange":"Unknown","groupMin":null,"groupMax":null,"zone":"Evershade Weald","area":"Beguiled Wolves Den - Southwest of fairy circle past a bridge and ruins","monsters":"a beguiled wolf","namedSpawns":"","lootDropped":"","notes":"Low information on camp. Submitter not high enough level to attempt camp. Extra clarifications needed.","status":"Needs info","tags":"needs info","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-010","levelBand":"1-5","soloRange":"Unknown","soloMin":null,"soloMax":null,"groupRange":"Unknown","groupMin":null,"groupMax":null,"zone":"Evershade Weald","area":"Faerie Dragon Caves - Northwest of fairy circle up some hills","monsters":"a beguiled wolf, a fae guardian, a fae spellweaver, a fae wanderer","namedSpawns":"","lootDropped":"","notes":"Low information on camp. Submitter not high enough level to attempt camp. Extra clarifications needed.","status":"Needs info","tags":"needs info","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-011","levelBand":"6-10","soloRange":"8","soloMin":8,"soloMax":8,"groupRange":"4-20","groupMin":4,"groupMax":20,"zone":"Tomb of the Last Wyrmsbane","area":"Entrance","monsters":"Undead","namedSpawns":"","lootDropped":"","notes":"Can grind for a while here at increasingly difficult camps. Good gear drops.","status":"Source row","tags":"solo, group, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-012","levelBand":"6-10","soloRange":"6-10","soloMin":6,"soloMax":10,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"Shaded Dunes","area":"Near zoneline into Tel'Ekir","monsters":"Ashira","namedSpawns":"","lootDropped":"","notes":"Contains multiple camps of Ashira with a convenient zoneline to evac to if pulls get wacky.","status":"Source row","tags":"solo","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"User supplied source","imageDataUrl":"data:image/png;base64,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","imageName":"ashiratest.png","imageAlt":"ashiratest"},{"id":"MNM-013","levelBand":"11-15","soloRange":"13-15","soloMin":13,"soloMax":15,"groupRange":"8-12","groupMin":8,"groupMax":12,"zone":"Night Harbor","area":"West of the twilight harbor in NH (by the cranes)","monsters":"Goblins","namedSpawns":"","lootDropped":"","notes":"No faction hit. Social.","status":"Source row","tags":"solo, group","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-014","levelBand":"11-15","soloRange":"12?","soloMin":12,"soloMax":12,"groupRange":"8-12","groupMin":8,"groupMax":12,"zone":"Sungreet Strand","area":"By the beach, past the Ashira camps","monsters":"Thugs, Acolytes","namedSpawns":"","lootDropped":"","notes":"It's best to have a tank and a healer, damage is high.","status":"Needs verification","tags":"solo, group, group advised, needs verification","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-015","levelBand":"11-15","soloRange":"12?","soloMin":12,"soloMax":12,"groupRange":"10-14?","groupMin":10,"groupMax":14,"zone":"Night Harbor","area":"Graveyard in town, above the necro area","monsters":"Undead","namedSpawns":"","lootDropped":"","notes":"Need a key to get in (There's a quest). They come out at night.","status":"Needs verification","tags":"solo, group, night, loot/quest, access, needs verification","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-016","levelBand":"11-15","soloRange":"17+","soloMin":17,"soloMax":60,"groupRange":"10-15","groupMin":10,"groupMax":15,"zone":"Sungreet Strand","area":"Tel Ekir","monsters":"Bloodynose goblin","namedSpawns":"","lootDropped":"","notes":"Tank and healer needed.","status":"Source row","tags":"solo, group, group advised","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-017","levelBand":"11-15","soloRange":"21?","soloMin":21,"soloMax":21,"groupRange":"13-18","groupMin":13,"groupMax":18,"zone":"Shaded Dunes","area":"Ancient Crypt","monsters":"Skeletons","namedSpawns":"","lootDropped":"","notes":"Tank and healer needed.","status":"Needs verification","tags":"solo, group, group advised, needs verification","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-018","levelBand":"16-20","soloRange":"17-20","soloMin":17,"soloMax":20,"groupRange":"15","groupMin":15,"groupMax":15,"zone":"Fallen Pass","area":"Pit just inside zone (don't go up the ramp)","monsters":"Dusty Skeletons","namedSpawns":"","lootDropped":"","notes":"They seem to range from 16-19. Easy single pulls, anywhere along the wall is generally safe.","status":"Source row","tags":"solo, group","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-019","levelBand":"16-20","soloRange":"18","soloMin":18,"soloMax":18,"groupRange":"16-20","groupMin":16,"groupMax":20,"zone":"Glass Flats","area":"Goblin camp (Turn left once you zone into GF from SS)","monsters":"Goblins","namedSpawns":"","lootDropped":"","notes":"-","status":"Source row","tags":"solo, group","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-020","levelBand":"16-20","soloRange":"24","soloMin":24,"soloMax":24,"groupRange":"16-20","groupMin":16,"groupMax":20,"zone":"Sungreet Strand","area":"Quarry","monsters":"Cinder Worker","namedSpawns":"","lootDropped":"","notes":"Loot is used in the Cinder Beetle Armor Quests.","status":"Source row","tags":"solo, group, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-021","levelBand":"16-20","soloRange":"21+","soloMin":21,"soloMax":60,"groupRange":"18-23","groupMin":18,"groupMax":23,"zone":"Sungreet Strand","area":"Ashira camp by Glass Flats zoneline (near the water)","monsters":"Ashira","namedSpawns":"","lootDropped":"","notes":"Can someone double check the level ranges? Were red at 17 but was in a group killing them.","status":"Needs verification","tags":"solo, group, group advised, needs verification","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-022","levelBand":"21-25","soloRange":"27","soloMin":27,"soloMax":27,"groupRange":"20-25","groupMin":20,"groupMax":25,"zone":"Fallen Pass","area":"Pit","monsters":"Bone Carver Beetles","namedSpawns":"","lootDropped":"","notes":"Necrofarius is a good beetle named looting some items.","status":"Source row","tags":"solo, group, named, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-023","levelBand":"21-25","soloRange":"28","soloMin":28,"soloMax":28,"groupRange":"20-25","groupMin":20,"groupMax":25,"zone":"Fallen Pass","area":"Up the ramp to the left","monsters":"Skeletons and Ghouls","namedSpawns":"","lootDropped":"","notes":"The ghoul adepts nuke for 200 (blaze) so interrupt it. Great xp, tons of pulls.","status":"Source row","tags":"solo, group","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-024","levelBand":"21-25","soloRange":"28","soloMin":28,"soloMax":28,"groupRange":"20-24","groupMin":20,"groupMax":24,"zone":"Glass Flats","area":"Beach, going straight ahead after entering","monsters":"Szuurian viper, beetles","namedSpawns":"","lootDropped":"","notes":"Single pull 20-25 (watchout for roaming named 30+) great xp.","status":"Source row","tags":"solo, group, named","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-025","levelBand":"21-25","soloRange":"30","soloMin":30,"soloMax":30,"groupRange":"20-25","groupMin":20,"groupMax":25,"zone":"Fallen Pass","area":"Necro cave, bank of the canyon","monsters":"Undead rats, fallen adventurers","namedSpawns":"Rotfang","lootDropped":"","notes":"Best exp/kill of FP but less xp/hour, not many mobs.","status":"Needs verification","tags":"solo, group","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"User supplied source","imageDataUrl":"data:image/jpeg;base64,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","imageName":"rotfang.png","imageAlt":"rotfang"},{"id":"MNM-026","levelBand":"26-30","soloRange":"32","soloMin":32,"soloMax":32,"groupRange":"22-28","groupMin":22,"groupMax":28,"zone":"Vale of Zintar","area":"Hug right wall, you'll see tents near a lake, beneath the corrupted floating castle","monsters":"Corrupted Ashira Hunter","namedSpawns":"","lootDropped":"","notes":"Great drops sellable between 30s and 1g at NPCs/OOC.","status":"Source row","tags":"solo, group, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-027","levelBand":"26-30","soloRange":"26-32","soloMin":26,"soloMax":32,"groupRange":"22-28","groupMin":22,"groupMax":28,"zone":"Sungreet Strand","area":"Cellar (third agricole building) and pirates (fourth)","monsters":"Pirate, hired tracker","namedSpawns":"","lootDropped":"","notes":"Cellar is a secret zone; double click on a wall and it will open.","status":"Source row","tags":"solo, group, access","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-028","levelBand":"26-30","soloRange":"35+","soloMin":35,"soloMax":60,"groupRange":"26-30","groupMin":26,"groupMax":30,"zone":"Vale of Zintar","area":"Orc camp - FP entrance, north west.","monsters":"Dustrend Orcs","namedSpawns":"","lootDropped":"","notes":"Loot doesn't compare with corrupted Ashiras but exp is better.","status":"Source row","tags":"solo, group, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-029","levelBand":"31-35","soloRange":"~32+","soloMin":32,"soloMax":60,"groupRange":"28-35","groupMin":28,"groupMax":35,"zone":"Keepers Bight","area":"Poachers camps","monsters":"poachers","namedSpawns":"","lootDropped":"","notes":"Named poachers drop tunic, leggings, boots, and dagger which can be handed in to undead NPC in bear cave. Also quest skinning daggers drop here.","status":"Source row","tags":"solo, group, named, loot/quest","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-030","levelBand":"36-40","soloRange":"-","soloMin":null,"soloMax":null,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"","area":"","monsters":"","namedSpawns":"","lootDropped":"","notes":"Needs data; source page contains only placeholder dashes for this level band.","status":"Needs data","tags":"needs data","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-031","levelBand":"41-45","soloRange":"-","soloMin":null,"soloMax":null,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"","area":"","monsters":"","namedSpawns":"","lootDropped":"","notes":"Needs data; source page contains only placeholder dashes for this level band.","status":"Needs data","tags":"needs data","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-032","levelBand":"46-50","soloRange":"-","soloMin":null,"soloMax":null,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"","area":"","monsters":"","namedSpawns":"","lootDropped":"","notes":"Needs data; source page contains only placeholder dashes for this level band.","status":"Needs data","tags":"needs data","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-033","levelBand":"51-55","soloRange":"-","soloMin":null,"soloMax":null,"groupRange":"-","groupMin":null,"groupMax":null,"zone":"","area":"","monsters":"","namedSpawns":"","lootDropped":"","notes":"Needs data; source page contains only placeholder dashes for this level band.","status":"Needs data","tags":"needs data","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""},{"id":"MNM-034","levelBand":"56-60","soloRange":"Can't solo","soloMin":null,"soloMax":null,"groupRange":"55-60","groupMin":55,"groupMax":60,"zone":"Vale of Zintar","area":"Sand giants city ? (Need info on the name)","monsters":"Sand giants and other giants monsters","namedSpawns":"","lootDropped":"","notes":"-","status":"Needs verification","tags":"group, needs verification","sourceUrl":"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide","sourceNote":"Imported from Monsters and Memories Wiki Per-Level Hunting Guide; wiki warns that many entries were written during playtests and may not reflect Early Access.","imageDataUrl":"","imageName":"","imageAlt":""}]};(function publicRuntime(){
+  document.body.classList.add("public");
+  const el = (id) => document.getElementById(id);
+  const initial = window.INITIAL_PACKAGE;
+  const headerState = normalizeHeader(initial.header || {});
+  const rows = (initial.rows || []).map(normalizeRow).map(setParsedRanges);
+  let currentView = "cards";
+  function normalizeHeader(input){
+    const base = {brandMark:"M&M",title:"Leveling Guide Dashboard",intro:"Leveling spots compiled from the Monsters & Memories Wiki and community sourced. Filter by level, solo/group suitability, zone, and status.",sourceTitle:"Source caution",sourceText:"This leveling guide contains leveling spots that were found during playtests and may not match Early Access. Please reach out if information is outdated.",sourceDate:"",wikiLabel:"Wiki source",wikiUrl:"https://monstersandmemories.miraheze.org/wiki/Per-Level_Hunting_Guide",officialLabel:"Official site",officialUrl:"https://monstersandmemories.com/"};
+    const next = {...base};
+    for(const key of Object.keys(next)){ if(input && Object.prototype.hasOwnProperty.call(input,key) && String(input[key] ?? "").trim() !== "") next[key] = String(input[key]).trim(); }
+    return next;
   }
-];
-const rows = SOURCE_ROWS.map(normalizeRow);
-let currentView = "cards";
-const el = (id) => document.getElementById(id);
-
-function normalizeRow(row){
-  const next = {...row};
-  const solo = parseRange(next.soloRange);
-  const group = parseRange(next.groupRange);
-  next.soloMin = next.soloMin ?? solo.min;
-  next.soloMax = next.soloMax ?? solo.max;
-  next.groupMin = next.groupMin ?? group.min;
-  next.groupMax = next.groupMax ?? group.max;
-  next.status = next.status || "Source row";
-  next.sourceUrl = next.sourceUrl || "";
-  next.sourceNote = next.sourceNote || "Imported guide row";
-  return next;
-}
-
-function parseRange(value){
-  const raw = String(value ?? "").trim();
-  if(!raw || raw === "-" || /can't solo|unknown/i.test(raw)) return {min:null, max:null};
-  const nums = raw.match(/\d+/g)?.map(Number) || [];
-  if(!nums.length) return {min:null, max:null};
-  if(nums.length === 1){
-    if(raw.includes("+")) return {min:nums[0], max:60};
-    return {min:nums[0], max:nums[0]};
-  }
-  return {min:Math.min(nums[0], nums[1]), max:Math.max(nums[0], nums[1])};
-}
-
-function rangeContains(min, max, level){
-  if(level === null || level === "" || Number.isNaN(level)) return true;
-  if(min === null || max === null) return false;
-  return min <= level && max >= level;
-}
-
-function sortedRows(list){
-  return [...list].sort((a,b) => {
-    const ab = parseInt(a.levelBand) || 999;
-    const bb = parseInt(b.levelBand) || 999;
-    const am = a.soloMin ?? a.groupMin ?? 999;
-    const bm = b.soloMin ?? b.groupMin ?? 999;
-    return ab - bb || am - bm || String(a.zone).localeCompare(String(b.zone));
-  });
-}
-
-function filteredRows(){
-  const q = el("search").value.trim().toLowerCase();
-  const target = el("targetLevel").value ? Number(el("targetLevel").value) : null;
-  const mode = el("mode").value;
-  const zone = el("zoneFilter").value;
-  const band = el("bandFilter").value;
-  const status = el("statusFilter").value;
-  const showNeeds = el("showNeedsData").checked;
-  return sortedRows(rows.filter(row => {
-    const hay = [row.id,row.levelBand,row.soloRange,row.groupRange,row.zone,row.area,row.monsters,row.notes,row.status,row.tags].join(" ").toLowerCase();
-    if(q && !hay.includes(q)) return false;
-    if(zone !== "all" && row.zone !== zone) return false;
-    if(band !== "all" && row.levelBand !== band) return false;
-    if(status !== "all" && row.status !== status) return false;
-    if(!showNeeds && ["Needs data","Needs info"].includes(row.status)) return false;
-    if(target !== null){
-      const soloMatch = rangeContains(row.soloMin, row.soloMax, target);
-      const groupMatch = rangeContains(row.groupMin, row.groupMax, target);
-      if(mode === "solo" && !soloMatch) return false;
-      if(mode === "group" && !groupMatch) return false;
-      if(mode === "either" && !(soloMatch || groupMatch)) return false;
-    }
-    return true;
-  }));
-}
-
-function refreshDropdowns(){
-  const currentZone = el("zoneFilter").value || "all";
-  const zones = [...new Set(rows.map(r => r.zone).filter(Boolean))].sort();
-  el("zoneFilter").innerHTML = `<option value="all">All zones</option>` + zones.map(z => `<option>${escapeHTML(z)}</option>`).join("");
-  el("zoneFilter").value = zones.includes(currentZone) ? currentZone : "all";
-
-  const currentBand = el("bandFilter").value || "all";
-  const bands = [...new Set(rows.map(r => r.levelBand).filter(Boolean))].sort((a,b)=>(parseInt(a)||999)-(parseInt(b)||999));
-  el("bandFilter").innerHTML = `<option value="all">All bands</option>` + bands.map(b => `<option>${escapeHTML(b)}</option>`).join("");
-  el("bandFilter").value = bands.includes(currentBand) ? currentBand : "all";
-}
-
-function render(){
-  refreshDropdowns();
-  const visible = filteredRows();
-  const zoneCount = new Set(rows.map(r => r.zone).filter(Boolean)).size;
-  const needs = rows.filter(r => ["Needs data","Needs info","Needs verification"].includes(r.status)).length;
-  el("kpiShown").textContent = visible.length;
-  el("kpiTotal").textContent = rows.length;
-  el("kpiZones").textContent = zoneCount;
-  el("kpiNeeds").textContent = needs;
-  el("resultsNote").textContent = describeFilters(visible.length);
-  renderCards(visible);
-  renderTable(visible);
-  el("cards").classList.toggle("hidden", currentView !== "cards");
-  el("tableWrap").classList.toggle("hidden", currentView !== "table");
-}
-
-function describeFilters(count){
-  const level = el("targetLevel").value;
-  const bits = [];
-  if(level) bits.push(`level ${level}`);
-  if(el("mode").value !== "either") bits.push(el("mode").value);
-  if(el("zoneFilter").value !== "all") bits.push(el("zoneFilter").value);
-  if(el("bandFilter").value !== "all") bits.push(`band ${el("bandFilter").value}`);
-  if(el("statusFilter").value !== "all") bits.push(el("statusFilter").value);
-  return bits.length ? `Showing ${count} row${count===1?"":"s"} matching ${bits.join(", ")}.` : `Showing ${count} guide row${count===1?"":"s"}.`;
-}
-
-function badgeClass(status){
-  if(status === "Source row") return "";
-  if(status === "Needs data" || status === "Needs info") return "needs";
-  if(status === "Needs verification") return "warn";
-  if(status === "Player added") return "group";
-  return "";
-}
-
-function renderCards(list){
-  if(!list.length){
-    el("cards").innerHTML = `<div class="empty panel">No camps match the current filters. Try clearing filters.</div>`;
-    return;
-  }
-  el("cards").innerHTML = list.map(row => `
-    <article class="card">
-      <div class="card-body">
-        <div class="card-top">
-          <div>
-            <div class="zone-name">${escapeHTML(row.zone || "Needs a zone")}</div>
-            <div class="area-name">${escapeHTML(row.area || "Needs camp details")}</div>
-          </div>
-          <span class="badge ${badgeClass(row.status)}">${escapeHTML(row.status)}</span>
-        </div>
-        <div class="meta">
-          <span class="badge">Band ${escapeHTML(row.levelBand || "-")}</span>
-          <span class="badge solo">Solo ${escapeHTML(row.soloRange || "-")}</span>
-          <span class="badge group">Group ${escapeHTML(row.groupRange || "-")}</span>
-        </div>
-        <div class="monsters"><strong>Targets:</strong> ${escapeHTML(row.monsters || "Needs monsters")}</div>
-        <p class="notes"><strong>Notes:</strong> ${escapeHTML(row.notes || "-")}</p>
-        ${row.tags ? `<div class="meta">${row.tags.split(",").map(t=>`<span class="badge">${escapeHTML(t.trim())}</span>`).join("")}</div>` : ""}
-      </div>
-    </article>
-  `).join("");
-}
-
-function renderTable(list){
-  if(!list.length){
-    el("tableBody").innerHTML = `<tr><td colspan="10" class="empty">No matching rows.</td></tr>`;
-    return;
-  }
-  el("tableBody").innerHTML = list.map(row => `
-    <tr>
-      <td>${escapeHTML(row.id)}</td>
-      <td>${escapeHTML(row.levelBand || "")}</td>
-      <td>${escapeHTML(row.soloRange || "")}</td>
-      <td>${escapeHTML(row.groupRange || "")}</td>
-      <td>${escapeHTML(row.zone || "")}</td>
-      <td>${escapeHTML(row.area || "")}</td>
-      <td>${escapeHTML(row.monsters || "")}</td>
-      <td>${escapeHTML(row.notes || "")}</td>
-      <td><span class="badge ${badgeClass(row.status)}">${escapeHTML(row.status)}</span></td>
-      <td>${escapeHTML(row.tags || "")}</td>
-    </tr>
-  `).join("");
-}
-
-function escapeHTML(value){
-  return String(value ?? "").replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-}
-
-document.addEventListener("input", (e) => {
-  if(["search","targetLevel"].includes(e.target.id)) render();
-});
-["mode","zoneFilter","bandFilter","statusFilter","showNeedsData"].forEach(id => el(id).addEventListener("change", render));
-
-el("clearFilters").addEventListener("click", () => {
-  el("search").value = "";
-  el("targetLevel").value = "";
-  el("mode").value = "either";
-  el("zoneFilter").value = "all";
-  el("bandFilter").value = "all";
-  el("statusFilter").value = "all";
-  el("showNeedsData").checked = true;
+  function parseRange(value){ const raw = String(value ?? "").trim(); if(!raw || raw === "-" || /can't solo|unknown/i.test(raw)) return {min:null,max:null}; const nums = raw.match(/\d+/g)?.map(Number) || []; if(!nums.length) return {min:null,max:null}; if(nums.length === 1){ if(raw.includes("+")) return {min:nums[0],max:60}; return {min:nums[0],max:nums[0]}; } return {min:Math.min(nums[0],nums[1]),max:Math.max(nums[0],nums[1])}; }
+  function normalizeRow(row){ const next = {...(row||{})}; const solo = parseRange(next.soloRange); const group = parseRange(next.groupRange); next.id=String(next.id||"").trim(); next.levelBand=String(next.levelBand??"").trim(); next.soloRange=String(next.soloRange??"").trim(); next.groupRange=String(next.groupRange??"").trim(); next.soloMin=next.soloMin??solo.min; next.soloMax=next.soloMax??solo.max; next.groupMin=next.groupMin??group.min; next.groupMax=next.groupMax??group.max; next.zone=String(next.zone??"").trim(); next.area=String(next.area??"").trim(); next.monsters=String(next.monsters??"").trim(); next.namedSpawns=String(next.namedSpawns??"").trim(); next.lootDropped=String(next.lootDropped??"").trim(); next.notes=String(next.notes??"").trim(); next.status=String(next.status||"Source row").trim(); next.tags=String(next.tags??"").trim(); next.sourceUrl=String(next.sourceUrl??"").trim(); next.sourceNote=String(next.sourceNote||"Imported guide row").trim(); next.imageDataUrl=String(next.imageDataUrl??""); next.imageName=String(next.imageName??"").trim(); next.imageAlt=String(next.imageAlt??"").trim(); return next; }
+  function setParsedRanges(row){ const solo=parseRange(row.soloRange); const group=parseRange(row.groupRange); row.soloMin=solo.min; row.soloMax=solo.max; row.groupMin=group.min; row.groupMax=group.max; return row; }
+  function rangeContains(min,max,level){ if(level === null || level === "" || Number.isNaN(level)) return true; if(min === null || max === null) return false; return min <= level && max >= level; }
+  function sortedRows(list){ return [...list].sort((a,b)=>{ const ab=parseInt(a.levelBand)||999; const bb=parseInt(b.levelBand)||999; const am=a.soloMin??a.groupMin??999; const bm=b.soloMin??b.groupMin??999; return ab-bb || am-bm || String(a.zone).localeCompare(String(b.zone)) || String(a.area).localeCompare(String(b.area)); }); }
+  function escapeHTML(value){ return String(value ?? "").replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+  function escapeAttr(value){ return escapeHTML(value); }
+  function badgeClass(status){ if(status === "Source row") return ""; if(status === "Needs data" || status === "Needs info") return "needs"; if(status === "Needs verification") return "warn"; if(status === "Player added") return "group"; return ""; }
+  function splitTags(tags){ return String(tags || "").split(",").map(t=>t.trim()).filter(Boolean); }
+  function rowImageHtml(row){ if(!row.imageDataUrl) return ""; const alt = row.imageAlt || row.area || row.zone || "Entry image"; return `<div class="entry-image-wrap"><img class="entry-image" src="${escapeAttr(row.imageDataUrl)}" alt="${escapeAttr(alt)}"></div>`; }
+  function rowThumbHtml(row){ if(!row.imageDataUrl) return ""; const alt = row.imageAlt || row.area || row.zone || "Entry image"; return `<img class="entry-thumb" src="${escapeAttr(row.imageDataUrl)}" alt="${escapeAttr(alt)}">`; }
+  function renderHeader(){ el("headerBrandMark").textContent=headerState.brandMark||"M&M"; el("headerTitle").textContent=headerState.title||""; el("headerIntro").textContent=headerState.intro||""; el("headerSourceTitle").textContent=headerState.sourceTitle||""; el("headerSourceText").textContent=headerState.sourceText||""; el("headerSourceDate").textContent=headerState.sourceDate||""; el("headerWikiLink").textContent=headerState.wikiLabel||"Wiki source"; el("headerWikiLink").href=headerState.wikiUrl; el("headerOfficialLink").textContent=headerState.officialLabel||"Official site"; el("headerOfficialLink").href=headerState.officialUrl; }
+  function refreshDropdowns(){ const currentZone=el("zoneFilter").value||"all"; const zones=[...new Set(rows.map(r=>r.zone).filter(Boolean))].sort(); el("zoneFilter").innerHTML='<option value="all">All zones</option>'+zones.map(z=>`<option>${escapeHTML(z)}</option>`).join(""); el("zoneFilter").value=zones.includes(currentZone)?currentZone:"all"; const currentBand=el("bandFilter").value||"all"; const bands=[...new Set(rows.map(r=>r.levelBand).filter(Boolean))].sort((a,b)=>(parseInt(a)||999)-(parseInt(b)||999)); el("bandFilter").innerHTML='<option value="all">All bands</option>'+bands.map(b=>`<option>${escapeHTML(b)}</option>`).join(""); el("bandFilter").value=bands.includes(currentBand)?currentBand:"all"; }
+  function filteredRows(){ const q=el("search").value.trim().toLowerCase(); const target=el("targetLevel").value?Number(el("targetLevel").value):null; const mode=el("mode").value; const zone=el("zoneFilter").value; const band=el("bandFilter").value; const status=el("statusFilter").value; const showNeeds=el("showNeedsData").checked; return sortedRows(rows.filter(row=>{ const hay=[row.id,row.levelBand,row.soloRange,row.groupRange,row.zone,row.area,row.monsters,row.namedSpawns,row.lootDropped,row.notes,row.status,row.tags,row.imageAlt,row.imageName].join(" ").toLowerCase(); if(q && !hay.includes(q)) return false; if(zone!=="all"&&row.zone!==zone) return false; if(band!=="all"&&row.levelBand!==band) return false; if(status!=="all"&&row.status!==status) return false; if(!showNeeds&&["Needs data","Needs info"].includes(row.status)) return false; if(target!==null){ const soloMatch=rangeContains(row.soloMin,row.soloMax,target); const groupMatch=rangeContains(row.groupMin,row.groupMax,target); if(mode==="solo"&&!soloMatch) return false; if(mode==="group"&&!groupMatch) return false; if(mode==="either"&&!(soloMatch||groupMatch)) return false; } return true; })); }
+  function describeFilters(count){ const bits=[]; if(el("targetLevel").value) bits.push(`level ${el("targetLevel").value}`); if(el("mode").value!=="either") bits.push(el("mode").value); if(el("zoneFilter").value!=="all") bits.push(el("zoneFilter").value); if(el("bandFilter").value!=="all") bits.push(`band ${el("bandFilter").value}`); if(el("statusFilter").value!=="all") bits.push(el("statusFilter").value); return bits.length ? `Showing ${count} row${count===1?"":"s"} matching ${bits.join(", ")}.` : `Showing ${count} guide row${count===1?"":"s"}.`; }
+  function renderCards(list){ if(!list.length){ el("cards").innerHTML='<div class="empty panel">No camps match the current filters. Try clearing filters.</div>'; return; } el("cards").innerHTML=list.map(row=>`<article class="card"><div class="card-body"><div class="card-top"><div><div class="zone-name">${escapeHTML(row.zone||"Needs a zone")}</div><div class="area-name">${escapeHTML(row.area||"Needs camp details")}</div></div><span class="badge ${badgeClass(row.status)}">${escapeHTML(row.status)}</span></div>${rowImageHtml(row)}<div class="meta"><span class="badge">Band ${escapeHTML(row.levelBand||"-")}</span><span class="badge solo">Solo ${escapeHTML(row.soloRange||"-")}</span><span class="badge group">Group ${escapeHTML(row.groupRange||"-")}</span></div><div class="detail"><strong>Targets:</strong> ${escapeHTML(row.monsters||"Needs monsters")}</div><div class="detail"><strong>Named Spawns:</strong> ${escapeHTML(row.namedSpawns||"—")}</div><div class="detail"><strong>Loot Dropped:</strong> ${escapeHTML(row.lootDropped||"—")}</div><p class="notes"><strong>Notes:</strong> ${escapeHTML(row.notes||"-")}</p>${row.imageAlt?`<p class="notes"><strong>Image:</strong> ${escapeHTML(row.imageAlt)}</p>`:""}${splitTags(row.tags).length?`<div class="meta">${splitTags(row.tags).map(t=>`<span class="badge">${escapeHTML(t)}</span>`).join("")}</div>`:""}</div></article>`).join(""); }
+  function renderTable(list){ if(!list.length){ el("tableBody").innerHTML='<tr><td colspan="13" class="empty">No matching rows.</td></tr>'; return; } el("tableBody").innerHTML=list.map(row=>`<tr><td>${escapeHTML(row.id)}</td><td>${rowThumbHtml(row)}</td><td>${escapeHTML(row.levelBand||"")}</td><td>${escapeHTML(row.soloRange||"")}</td><td>${escapeHTML(row.groupRange||"")}</td><td>${escapeHTML(row.zone||"")}</td><td>${escapeHTML(row.area||"")}</td><td>${escapeHTML(row.monsters||"")}</td><td>${escapeHTML(row.namedSpawns||"")}</td><td>${escapeHTML(row.lootDropped||"")}</td><td>${escapeHTML(row.notes||"")}</td><td><span class="badge ${badgeClass(row.status)}">${escapeHTML(row.status)}</span></td><td>${escapeHTML(row.tags||"")}</td></tr>`).join(""); }
+  function render(){ renderHeader(); refreshDropdowns(); const visible=filteredRows(); const zoneCount=new Set(rows.map(r=>r.zone).filter(Boolean)).size; const needs=rows.filter(r=>["Needs data","Needs info","Needs verification"].includes(r.status)).length; el("kpiShown").textContent=visible.length; el("kpiTotal").textContent=rows.length; el("kpiZones").textContent=zoneCount; el("kpiNeeds").textContent=needs; el("savedLabel").textContent="Guide rows"; el("resultsNote").textContent=describeFilters(visible.length); renderCards(visible); renderTable(visible); el("cards").classList.toggle("hidden", currentView!=="cards"); el("tableWrap").classList.toggle("hidden", currentView!=="table"); }
+  document.addEventListener("input", e=>{ if(["search","targetLevel"].includes(e.target.id)) render(); });
+  ["mode","zoneFilter","bandFilter","statusFilter","showNeedsData"].forEach(id=>el(id).addEventListener("change", render));
+  el("clearFilters").addEventListener("click",()=>{ el("search").value=""; el("targetLevel").value=""; el("mode").value="either"; el("zoneFilter").value="all"; el("bandFilter").value="all"; el("statusFilter").value="all"; el("showNeedsData").checked=true; render(); });
+  el("cardViewBtn").addEventListener("click",()=>{ currentView="cards"; el("cardViewBtn").className="btn secondary"; el("tableViewBtn").className="btn ghost"; render(); });
+  el("tableViewBtn").addEventListener("click",()=>{ currentView="table"; el("tableViewBtn").className="btn secondary"; el("cardViewBtn").className="btn ghost"; render(); });
+  const publicNote = document.querySelector(".public-only"); if(publicNote) publicNote.classList.remove("hidden");
+  const saveState = el("saveState"); if(saveState) saveState.textContent = "Public";
   render();
-});
-
-el("cardViewBtn").addEventListener("click", () => {
-  currentView = "cards";
-  el("cardViewBtn").className = "btn secondary";
-  el("tableViewBtn").className = "btn ghost";
-  render();
-});
-el("tableViewBtn").addEventListener("click", () => {
-  currentView = "table";
-  el("tableViewBtn").className = "btn secondary";
-  el("cardViewBtn").className = "btn ghost";
-  render();
-});
-
-render();
-</script>
+})();</script>
 </body>
 </html>
